@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Stream Interface</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Main container */
+        .container {
+            width: 100%;
+            max-width: 700px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+
+        .header a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 15px;
+        }
+
+        .header a.active {
+            border-bottom: 2px solid red;
+        }
+
+        /* Video player styling */
+        .video-container {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+        }
+
+        /* File details */
+        .file-info {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        /* Buttons container */
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        /* Button styling */
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .download-btn { background-color: #1e88e5; }
+        .copy-btn { background-color: #6a1b9a; }
+        .vlc-btn { background-color: #ff5722; }
+        .mxplayer-btn { background-color: #3f51b5; }
+        .nplayer-btn { background-color: #4caf50; }
+
+        /* Hover effects */
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header with navigation links -->
+    <div class="header">
+        <a href="#" class="active">HOME</a>
+        <a href="#">ABOUT</a>
+    </div>
+
+    <!-- Video container -->
+    <div class="video-container">
+        <video controls>
+            <source src="https://file-to-link-bot-nx-a4a8eaae5135.herokuapp.com/dl/672a108ea5b5f105ee5dad38" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- File information -->
+    <div class="file-info">
+        <p>File Name: @MOVIELOVERS MLS Rangabali 2023 Telugu 720p Proper HQ Real PreDVDRip.Mkv</p>
+        <p>File Size: 1.41 GiB</p>
+    </div>
+
+    <!-- Buttons container -->
+    <div class="button-container">
+        <button class="download-btn">DOWNLOAD VIDEO</button>
+        <button class="copy-btn">COPY LINK</button>
+        <button class="vlc-btn">WATCH IN VLC PLAYER</button>
+        <button class="mxplayer-btn">WATCH IN MX PLAYER</button>
+        <button class="nplayer-btn">WATCH IN NPLAYER</button>
+    </div>
+</div>
+
+</body>
+          </html>
