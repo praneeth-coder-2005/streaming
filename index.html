@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced Video Stream Interface</title>
+    <title>Enhanced Video Player Interface</title>
     <style>
-        /* Gradient background with animation */
+        /* Basic body styling with gradient background */
         body {
             font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #1e1e1e, #121212, #1e1e1e);
@@ -38,212 +38,173 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* Header */
-        .header {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 10px 0;
-        }
-
-        .header a {
-            color: white;
-            text-decoration: none;
-            padding: 5px 15px;
-            font-weight: bold;
-            font-size: 16px;
-            position: relative;
-        }
-
-        .header a.active::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: -5px;
-            margin: auto;
-            width: 50%;
-            height: 2px;
-            background-color: #e53935;
-            border-radius: 5px;
-        }
-
         /* Video container */
         .video-container {
-            width: 100%;
             position: relative;
             border-radius: 12px;
             overflow: hidden;
             margin: 20px 0;
             box-shadow: 0 4px 15px rgba(0, 150, 255, 0.6);
-            transition: transform 0.3s ease;
-            animation: glow 1.5s infinite alternate;
-        }
-
-        /* Video glow effect */
-        @keyframes glow {
-            0% { box-shadow: 0 4px 15px rgba(0, 150, 255, 0.6); }
-            100% { box-shadow: 0 4px 30px rgba(0, 150, 255, 0.9); }
-        }
-
-        .video-container:hover {
-            transform: scale(1.03);
-        }
-
-        /* Play button overlay */
-        .play-button-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            z-index: 10;
-        }
-
-        .play-button-overlay:hover {
-            transform: translate(-50%, -50%) scale(1.1);
-        }
-
-        .play-button-overlay::before {
-            content: "";
-            display: inline-block;
-            width: 0;
-            height: 0;
-            border-left: 24px solid white;
-            border-top: 12px solid transparent;
-            border-bottom: 12px solid transparent;
         }
 
         video {
             width: 100%;
-            height: auto;
+            border-radius: 12px;
         }
 
-        .file-info {
-            margin: 10px 0;
-            font-size: 15px;
-            color: #bbbbbb;
-            letter-spacing: 0.5px;
-            text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8);
-        }
-
-        /* Button styling */
-        .button-container {
+        /* Custom controls container */
+        .controls {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
-            justify-content: center;
-            margin-top: 20px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
         }
 
-        .button {
-            padding: 12px;
-            font-size: 16px;
-            font-weight: bold;
+        .controls button {
+            background: none;
             border: none;
-            border-radius: 6px;
             color: white;
+            font-size: 18px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            max-width: 300px;
-            margin: auto;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            position: relative;
+            padding: 5px;
+            transition: color 0.3s;
+        }
+
+        .controls button:hover {
+            color: #2196f3;
+        }
+
+        .controls .progress-bar {
+            flex-grow: 1;
+            height: 8px;
+            background: #333;
+            border-radius: 5px;
             overflow: hidden;
+            cursor: pointer;
+            margin: 0 10px;
         }
 
-        .button:hover {
-            filter: brightness(1.1);
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+        .controls .progress {
+            height: 100%;
+            background: #2196f3;
+            width: 0%;
         }
 
-        .download-btn { background-color: #2196f3; }
-        .copy-btn { background-color: #9c27b0; }
-        .vlc-btn { background-color: #ff5722; }
-        .mxplayer-btn { background-color: #3f51b5; }
-        .nplayer-btn { background-color: #4caf50; }
+        .controls .time {
+            font-size: 14px;
+        }
+
+        .controls .volume-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .controls .volume-slider {
+            width: 80px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- Header with navigation links -->
-    <div class="header">
-        <a href="#" class="active">HOME</a>
-        <a href="#">ABOUT</a>
-    </div>
-
-    <!-- Video container with play button overlay -->
+    <!-- Video container with custom controls -->
     <div class="video-container">
-        <video id="video" controls>
-            <source src="https://file-to-link-bot-nx-a4a8eaae5135.herokuapp.com/dl/672a108ea5b5f105ee5dad38" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="play-button-overlay" id="playButton" onclick="togglePlay()"></div>
-    </div>
-
-    <!-- File information -->
-    <div class="file-info">
-        <p>File Name: @MOVIELOVERS MLS Rangabali 2023 Telugu 720p Proper HQ Real PreDVDRip.Mkv</p>
-        <p>File Size: 1.41 GiB</p>
-    </div>
-
-    <!-- Buttons container -->
-    <div class="button-container">
-        <button class="button download-btn" onclick="downloadVideo()">DOWNLOAD VIDEO</button>
-        <button class="button copy-btn" onclick="copyLink()">COPY LINK</button>
-        <button class="button vlc-btn" onclick="openInVLC()">WATCH IN VLC PLAYER</button>
-        <button class="button mxplayer-btn" onclick="openInMX()">WATCH IN MX PLAYER</button>
-        <button class="button nplayer-btn" onclick="openInNPlayer()">WATCH IN NPLAYER</button>
+        <video id="video" src="https://file-to-link-bot-nx-a4a8eaae5135.herokuapp.com/dl/672a108ea5b5f105ee5dad38"></video>
+        
+        <!-- Custom controls -->
+        <div class="controls">
+            <button id="playPauseButton">▶️</button>
+            <span class="time" id="currentTime">0:00</span>
+            <div class="progress-bar" id="progressBar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <span class="time" id="duration">0:00</span>
+            <div class="volume-container">
+                <button id="muteButton">🔊</button>
+                <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.1" value="1">
+            </div>
+            <button id="fullScreenButton">🔲</button>
+        </div>
     </div>
 </div>
 
 <script>
     const video = document.getElementById("video");
-    const playButton = document.getElementById("playButton");
+    const playPauseButton = document.getElementById("playPauseButton");
+    const progressBar = document.getElementById("progressBar");
+    const progress = document.getElementById("progress");
+    const currentTimeDisplay = document.getElementById("currentTime");
+    const durationDisplay = document.getElementById("duration");
+    const muteButton = document.getElementById("muteButton");
+    const volumeSlider = document.getElementById("volumeSlider");
+    const fullScreenButton = document.getElementById("fullScreenButton");
 
-    // Toggle play/pause video with overlay button
-    function togglePlay() {
+    // Play/Pause functionality
+    playPauseButton.addEventListener("click", () => {
         if (video.paused) {
             video.play();
-            playButton.style.display = "none"; // Hide play button when playing
+            playPauseButton.textContent = "⏸️";
         } else {
             video.pause();
-            playButton.style.display = "flex"; // Show play button when paused
+            playPauseButton.textContent = "▶️";
         }
-    }
+    });
 
-    // Helper functions for the action buttons
-    function downloadVideo() {
-        window.location.href = video.src;
-    }
+    // Update time display
+    video.addEventListener("timeupdate", () => {
+        const currentMinutes = Math.floor(video.currentTime / 60);
+        const currentSeconds = Math.floor(video.currentTime % 60).toString().padStart(2, "0");
+        const durationMinutes = Math.floor(video.duration / 60);
+        const durationSeconds = Math.floor(video.duration % 60).toString().padStart(2, "0");
 
-    function copyLink() {
-        navigator.clipboard.writeText(video.src).then(() => {
-            alert("Link copied to clipboard!");
-        });
-    }
+        currentTimeDisplay.textContent = `${currentMinutes}:${currentSeconds}`;
+        durationDisplay.textContent = `${durationMinutes}:${durationSeconds}`;
 
-    function openInVLC() {
-        window.location.href = `vlc://${video.src}`;
-    }
+        // Update progress bar
+        const progressPercent = (video.currentTime / video.duration) * 100;
+        progress.style.width = `${progressPercent}%`;
+    });
 
-    function openInMX() {
-        window.location.href = `intent://${video.src}#Intent;package=com.mxtech.videoplayer.ad;end`;
-    }
+    // Seek functionality
+    progressBar.addEventListener("click", (e) => {
+        const clickX = e.offsetX;
+        const width = progressBar.clientWidth;
+        const duration = video.duration;
 
-    function openInNPlayer() {
-        window.location.href = `nplayer-${video.src}`;
-    }
+        video.currentTime = (clickX / width) * duration;
+    });
+
+    // Mute/Unmute functionality
+    muteButton.addEventListener("click", () => {
+        video.muted = !video.muted;
+        muteButton.textContent = video.muted ? "🔇" : "🔊";
+    });
+
+    // Volume control functionality
+    volumeSlider.addEventListener("input", (e) => {
+        video.volume = e.target.value;
+    });
+
+    // Fullscreen functionality
+    fullScreenButton.addEventListener("click", () => {
+        if (!document.fullscreenElement) {
+            video.requestFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
+    });
+
+    // Load video metadata to display duration initially
+    video.addEventListener("loadedmetadata", () => {
+        const durationMinutes = Math.floor(video.duration / 60);
+        const durationSeconds = Math.floor(video.duration % 60).toString().padStart(2, "0");
+        durationDisplay.textContent = `${durationMinutes}:${durationSeconds}`;
+    });
 </script>
 
 </body>
