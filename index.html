@@ -36,6 +36,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            margin: 20px;
         }
 
         /* Video container */
@@ -49,6 +50,7 @@
 
         video {
             width: 100%;
+            height: auto;
             border-radius: 12px;
         }
 
@@ -61,6 +63,7 @@
             background: rgba(0, 0, 0, 0.8);
             border-bottom-left-radius: 12px;
             border-bottom-right-radius: 12px;
+            width: 100%;
         }
 
         .controls button {
@@ -112,6 +115,9 @@
 <body>
 
 <div class="container">
+    <h2>Enhanced Video Player</h2>
+    <p style="color: #bbbbbb; font-size: 14px;">A modern video player with custom controls.</p>
+
     <!-- Video container with custom controls -->
     <div class="video-container">
         <video id="video" src="https://file-to-link-bot-nx-a4a8eaae5135.herokuapp.com/dl/672a108ea5b5f105ee5dad38"></video>
