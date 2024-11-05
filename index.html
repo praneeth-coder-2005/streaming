@@ -125,12 +125,6 @@
         video {
             width: 100%;
             height: auto;
-            display: none; /* Hide video initially for overlay effect */
-        }
-
-        /* Show video when it starts playing */
-        video.playing {
-            display: block;
         }
 
         .file-info {
@@ -189,12 +183,12 @@
     </div>
 
     <!-- Video container with play button overlay -->
-    <div class="video-container" onclick="togglePlay()">
+    <div class="video-container">
         <video id="video" controls>
             <source src="https://file-to-link-bot-nx-a4a8eaae5135.herokuapp.com/dl/672a108ea5b5f105ee5dad38" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <div class="play-button-overlay" id="playButton"></div>
+        <div class="play-button-overlay" id="playButton" onclick="togglePlay()"></div>
     </div>
 
     <!-- File information -->
@@ -222,13 +216,13 @@
         if (video.paused) {
             video.play();
             playButton.style.display = "none"; // Hide play button when playing
-            video.classList.add("playing");
         } else {
             video.pause();
             playButton.style.display = "flex"; // Show play button when paused
         }
     }
 
+    // Helper functions for the action buttons
     function downloadVideo() {
         window.location.href = video.src;
     }
