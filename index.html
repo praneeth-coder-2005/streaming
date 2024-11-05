@@ -28,7 +28,8 @@
         /* Header */
         .header {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            gap: 20px;
             padding: 10px 0;
         }
 
@@ -36,6 +37,7 @@
             color: white;
             text-decoration: none;
             padding: 5px 15px;
+            font-weight: bold;
         }
 
         .header a.active {
@@ -65,21 +67,24 @@
         /* Buttons container */
         .button-container {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
             gap: 10px;
             justify-content: center;
             margin-top: 20px;
         }
 
         /* Button styling */
-        button {
-            padding: 10px 20px;
+        .button {
+            padding: 10px;
+            font-size: 16px;
             border: none;
             border-radius: 4px;
-            font-size: 14px;
             color: white;
             cursor: pointer;
             transition: background-color 0.3s;
+            width: 100%;
+            max-width: 300px;
+            margin: auto;
         }
 
         .download-btn { background-color: #1e88e5; }
@@ -89,7 +94,7 @@
         .nplayer-btn { background-color: #4caf50; }
 
         /* Hover effects */
-        button:hover {
+        .button:hover {
             opacity: 0.9;
         }
     </style>
@@ -119,13 +124,13 @@
 
     <!-- Buttons container -->
     <div class="button-container">
-        <button class="download-btn">DOWNLOAD VIDEO</button>
-        <button class="copy-btn">COPY LINK</button>
-        <button class="vlc-btn">WATCH IN VLC PLAYER</button>
-        <button class="mxplayer-btn">WATCH IN MX PLAYER</button>
-        <button class="nplayer-btn">WATCH IN NPLAYER</button>
+        <button class="button download-btn">DOWNLOAD VIDEO</button>
+        <button class="button copy-btn">COPY LINK</button>
+        <button class="button vlc-btn">WATCH IN VLC PLAYER</button>
+        <button class="button mxplayer-btn">WATCH IN MX PLAYER</button>
+        <button class="button nplayer-btn">WATCH IN NPLAYER</button>
     </div>
 </div>
 
 </body>
-          </html>
+</html>
