@@ -124,13 +124,47 @@
 
     <!-- Buttons container -->
     <div class="button-container">
-        <button class="button download-btn">DOWNLOAD VIDEO</button>
-        <button class="button copy-btn">COPY LINK</button>
-        <button class="button vlc-btn">WATCH IN VLC PLAYER</button>
-        <button class="button mxplayer-btn">WATCH IN MX PLAYER</button>
-        <button class="button nplayer-btn">WATCH IN NPLAYER</button>
+        <button class="button download-btn" onclick="downloadVideo()">DOWNLOAD VIDEO</button>
+        <button class="button copy-btn" onclick="copyLink()">COPY LINK</button>
+        <button class="button vlc-btn" onclick="openInVLC()">WATCH IN VLC PLAYER</button>
+        <button class="button mxplayer-btn" onclick="openInMX()">WATCH IN MX PLAYER</button>
+        <button class="button nplayer-btn" onclick="openInNPlayer()">WATCH IN NPLAYER</button>
     </div>
 </div>
+
+<script>
+    // URL of the video file
+    const videoUrl = "https://file-to-link-bot-nx-a4a8eaae5135.herokuapp.com/dl/672a108ea5b5f105ee5dad38";
+
+    // Function to download the video
+    function downloadVideo() {
+        window.location.href = videoUrl;
+    }
+
+    // Function to copy the video link to clipboard
+    function copyLink() {
+        navigator.clipboard.writeText(videoUrl).then(() => {
+            alert("Link copied to clipboard!");
+        }).catch((error) => {
+            alert("Failed to copy link: " + error);
+        });
+    }
+
+    // Function to open the video in VLC player (using URL scheme)
+    function openInVLC() {
+        window.location.href = `vlc://${videoUrl}`;
+    }
+
+    // Function to open the video in MX Player
+    function openInMX() {
+        window.location.href = `intent://${videoUrl}#Intent;package=com.mxtech.videoplayer.ad;end`;
+    }
+
+    // Function to open the video in NPlayer
+    function openInNPlayer() {
+        window.location.href = `nplayer-${videoUrl}`;
+    }
+</script>
 
 </body>
 </html>
